@@ -28,11 +28,49 @@ input_data = pd.DataFrame({
     'transmission': [transmission],
     'owner': [owner]
 })
-test = np.array([year, km_driven, fuel, seller_type, transmission, owner])
-test = test.reshape(1, -1)
 
 
-prediction = model.predict(test)[0]
+if st.button('Predict'):
+    if fuel == 'Diesel':
+        fuel = 1
+    elif fuel == 'Petrol':
+        fuel = 4
+    elif fuel == 'CNG':
+        fuel = 0
+    elif fuel == 'LPG':
+        fuel = 3
+    else:
+        fuel = 2
+   
+    if seller_type == 'Individual':
+        seller_type = 1
+    elif seller_type == 'Dealer':
+        seller_type = 0
+    else:
+        seller_type = 2
+   
+    if transmission == 'Manual':
+        transmission = 1
+    else:
+        transmission = 0
+
+    if owner == 'First Owner':
+        owner = 0
+    elif owner == 'Second Owner':
+        owner = 2
+    elif owner == 'Third Owner':
+        owner = 4
+    elif owner == 'Fourth & Above Owner':
+        owner = 1
+    else:
+        owner = 3
+       
+    
+    test = np.array([year, km_driven, fuel, seller_type, transmission, owner])
+    test = test.reshape(1, -1)
+
+
+    prediction = model.predict(test)[0]
 
     # Display the result
-st.success(f'Predicted Price: {prediction}')
+    st.success(f'Predicted Price: {prediction}')
