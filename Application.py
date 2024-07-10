@@ -3,7 +3,7 @@ import pandas as pd
 import pickle
 import numpy as np
 
-with open('.pkl', 'rb') as file:
+with open('best_regression_model.pkl', 'rb') as file:
     model = pickle.load(file)
 
 # Title of the app
